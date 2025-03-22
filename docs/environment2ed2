@@ -1,0 +1,8 @@
+<error>
+    <code>wp_die</code>
+    <title><![CDATA[WordPress &amp;rsaquo; エラー]]></title>
+    <message><![CDATA[&lt;strong&gt;エラー:&lt;/strong&gt; これは無効なフィードテンプレートです。]]></message>
+    <data>
+        <status>404</status>
+    </data>
+</error>

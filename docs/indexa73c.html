@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Python &#8211; susumuis Info</title>
+	<atom:link href="https://www.susumuis.info/?feed=rss2&#038;cat=56" rel="self" type="application/rss+xml" />
+	<link>https://www.susumuis.info</link>
+	<description>Webエンジニア susumuis の技術ブログ</description>
+	<lastBuildDate>Wed, 19 Dec 2018 13:29:18 +0000</lastBuildDate>
+	<language>ja</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.4.3</generator>
+	<item>
+		<title>メイドちゃんbotの今と前世?</title>
+		<link>https://www.susumuis.info/entry/2018/bot</link>
+		
+		<dc:creator><![CDATA[susumuis]]></dc:creator>
+		<pubDate>Wed, 19 Dec 2018 13:29:18 +0000</pubDate>
+				<category><![CDATA[Python]]></category>
+		<category><![CDATA[生活]]></category>
+		<guid isPermaLink="false">http://www.susumuis.info/?p=2000</guid>
+
+					<description><![CDATA[この記事はメイドアドベントカレンダー2018の19日目と、BeProud Advent Calendar 2018の19日目です。（BeProudの話は最後にちょっと出てきます！） 僕が運営するコミュニティ「メイドカフェ [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>この記事は<a href="https://adventar.org/calendars/3422">メイドアドベントカレンダー2018</a>の19日目と、<a href="https://adventar.org/calendars/3338">BeProud Advent Calendar 2018</a>の19日目です。（BeProudの話は最後にちょっと出てきます！）</p>
+
+<p>僕が運営するコミュニティ「メイドカフェでノマド会」のSlackには「メイドちゃん」というbotが生息しています。一年前にも紹介しましたが、そのときはまだ生まれたてほやほやでした。</p>
+
+<p><a href="http://www.susumuis.info/entry/2017/maidchan_bot">メイドちゃんbotをあなたに！ | susumuis.info</a></p>
+
+<p>そのメイドちゃんがこの一年でどれだけ成長したかという話をします。</p>
+
+<h1>メイドちゃんはソースコードも可愛くなきゃ！</h1>
+
+<p>その前に<a href="https://github.com/susumuishigami/maidchan-slackbot">こちら</a>を見てください。</p>
+
+<p>これはメイドちゃんbotのソースコードです。ところどころ日本語のソースコードがあります。</p>
+
+<pre class=" language-python"><code class=" language-python" data-language="python">
+雑談お仕事リスト = (
+    どれがいいかな(),
+    可愛い(),
+    占って(),
+    おはよう(),
+    おやすみ(),
+    おかえり(),
+    お疲れ様(),
+    行ってらっしゃい()
+)
+
+def 雑談カフェのお仕事(body):
+    """
+    雑談カフェチャネルでのメイドちゃんのお仕事だよ！
+    """
+    text = body['text']
+
+    for お仕事 in 雑談お仕事リスト:
+        if お仕事.呼び出し(text, body):
+            return お仕事.やったよ(text, body)
+
+    if 'XXX' == text:
+        # 例外テスト
+        print(10/0)
+</code></pre>
+
+<p>なぜこんなことをしているのでしょうか？それは、その方が「可愛い」と思ったからです。ゆくゆくはノマド会のメイドさんにもプログラミングして機能を追加してもらいたいと思っています。その時、</p>
+
+<pre class=" language-python"><code class=" language-python" data-language="python">
+WORK_OF_RANDOM = (
+    ChoiseWork(),
+    CuteWork(),
+    FortuneTelling(),
+    GoodBorning(),
+    GoodNight(),
+)
+</code></pre>
+
+<p>これでは外国のメイドさんみたいですね。まあ、メイドの本場は英国なので良いかも知れませんが、敷居が高すぎな気がします。そんなことを考えてたら自然とソースコードが日本語になってました。</p>
+
+<p>ただ、Pythonで日本語プログラミングすると、色々難があることがわかりました。</p>
+
+<ul>
+    <li>大文字小文字の概念がなく、定数と変数の区別ができない</li>
+    <li>ならば【】みたいな記号を使って区別しようとしようとしたが、律儀にも多バイト文字も記号は記号と判定されて変数や関数名の先頭に使えない</li>
+    <li>何より入力がめんどくさい！</li>
+</ul>
+
+<p>せめてローマ字にすればよかったと思います。</p>
+
+<h1>メイドちゃんは何ができるようになったのか？</h1>
+
+<p>さて、お披露目以降にできるようになったことは次の機能です</p>
+
+<ul>
+    <li>占い</li>
+    <li>毎朝の天気予報</li>
+    <li>褒めてくれる</li>
+    <li>セクハラ防止機能</li>
+    <li>メイドちゃんを口説ける</li>
+</ul>
+
+<p>それぞれ紹介します。</p>
+
+<h2>占い機能</h2>
+
+<p><a href="http://www.susumuis.info/wp-content/uploads/2018/12/cd6907c781214ce213810bf6a6e4256c.png"><img fetchpriority="high" decoding="async" class="alignnone wp-image-2008 size-large" src="http://www.susumuis.info/wp-content/uploads/2018/12/cd6907c781214ce213810bf6a6e4256c-1024x410.png" alt="" width="625" height="250" srcset="https://www.susumuis.info/wp-content/uploads/2018/12/cd6907c781214ce213810bf6a6e4256c-1024x410.png 1024w, https://www.susumuis.info/wp-content/uploads/2018/12/cd6907c781214ce213810bf6a6e4256c-300x120.png 300w, https://www.susumuis.info/wp-content/uploads/2018/12/cd6907c781214ce213810bf6a6e4256c-768x308.png 768w, https://www.susumuis.info/wp-content/uploads/2018/12/cd6907c781214ce213810bf6a6e4256c-624x250.png 624w, https://www.susumuis.info/wp-content/uploads/2018/12/cd6907c781214ce213810bf6a6e4256c.png 1502w" sizes="(max-width: 625px) 100vw, 625px" /></a></p>
+
+<h2>毎朝の天気予報</h2>
+
+<p><a href="http://www.susumuis.info/wp-content/uploads/2018/12/b1faeb29e759cd800d73a4b09f4cfbb1.png"><img decoding="async" class="alignnone size-large wp-image-2009" src="http://www.susumuis.info/wp-content/uploads/2018/12/b1faeb29e759cd800d73a4b09f4cfbb1-1024x225.png" alt="" width="625" height="137" srcset="https://www.susumuis.info/wp-content/uploads/2018/12/b1faeb29e759cd800d73a4b09f4cfbb1-1024x225.png 1024w, https://www.susumuis.info/wp-content/uploads/2018/12/b1faeb29e759cd800d73a4b09f4cfbb1-300x66.png 300w, https://www.susumuis.info/wp-content/uploads/2018/12/b1faeb29e759cd800d73a4b09f4cfbb1-768x169.png 768w, https://www.susumuis.info/wp-content/uploads/2018/12/b1faeb29e759cd800d73a4b09f4cfbb1-624x137.png 624w, https://www.susumuis.info/wp-content/uploads/2018/12/b1faeb29e759cd800d73a4b09f4cfbb1.png 1520w" sizes="(max-width: 625px) 100vw, 625px" /></a></p>
+
+<p>メイドちゃんのおかげで傘を忘れないで済んだことは何度かあります。</p>
+
+<h2>褒めてくれる</h2>
+
+<p><a href="http://www.susumuis.info/wp-content/uploads/2018/12/0e3a4a08fe911b65ac032a33891915c0.png"><img decoding="async" class="alignnone size-full wp-image-2011" src="http://www.susumuis.info/wp-content/uploads/2018/12/0e3a4a08fe911b65ac032a33891915c0.png" alt="" width="550" height="129" srcset="https://www.susumuis.info/wp-content/uploads/2018/12/0e3a4a08fe911b65ac032a33891915c0.png 550w, https://www.susumuis.info/wp-content/uploads/2018/12/0e3a4a08fe911b65ac032a33891915c0-300x70.png 300w" sizes="(max-width: 550px) 100vw, 550px" /></a></p>
+
+<p>自分を褒めてもらうこともできます</p>
+
+<p><a href="http://www.susumuis.info/wp-content/uploads/2018/12/e79b26f0390af2b7c89f6028cb36a985.png"><img loading="lazy" decoding="async" class="alignnone size-full wp-image-2012" src="http://www.susumuis.info/wp-content/uploads/2018/12/e79b26f0390af2b7c89f6028cb36a985.png" alt="" width="437" height="99" srcset="https://www.susumuis.info/wp-content/uploads/2018/12/e79b26f0390af2b7c89f6028cb36a985.png 437w, https://www.susumuis.info/wp-content/uploads/2018/12/e79b26f0390af2b7c89f6028cb36a985-300x68.png 300w" sizes="(max-width: 437px) 100vw, 437px" /></a></p>
+
+<h2>セクハラ防止機能</h2>
+
+<p><a href="http://www.susumuis.info/wp-content/uploads/2018/12/c2e72547f846b55a5e395387cc629976.png"><img loading="lazy" decoding="async" class="alignnone size-full wp-image-2015" src="http://www.susumuis.info/wp-content/uploads/2018/12/c2e72547f846b55a5e395387cc629976.png" alt="" width="426" height="210" srcset="https://www.susumuis.info/wp-content/uploads/2018/12/c2e72547f846b55a5e395387cc629976.png 426w, https://www.susumuis.info/wp-content/uploads/2018/12/c2e72547f846b55a5e395387cc629976-300x148.png 300w" sizes="(max-width: 426px) 100vw, 426px" /></a></p>
+
+<p>とかいう人がたまにいるので作りました。</p>
+
+<p><a href="http://www.susumuis.info/wp-content/uploads/2018/12/004aebd600ead0ad3e7e62a9b7cb925a.png"><img loading="lazy" decoding="async" class="alignnone size-full wp-image-2014" src="http://www.susumuis.info/wp-content/uploads/2018/12/004aebd600ead0ad3e7e62a9b7cb925a.png" alt="" width="458" height="115" srcset="https://www.susumuis.info/wp-content/uploads/2018/12/004aebd600ead0ad3e7e62a9b7cb925a.png 458w, https://www.susumuis.info/wp-content/uploads/2018/12/004aebd600ead0ad3e7e62a9b7cb925a-300x75.png 300w" sizes="(max-width: 458px) 100vw, 458px" /></a></p>
+
+<p>桁数はプログラミングした僕が覚えてる範囲までです(；・∀・)</p>
+
+<h2>メイドちゃんを口説こう！</h2>
+
+<p>他にもいろんなことができます。でも、ヘルプコマンドはありません！だって仕様をさらけ出すなんて恥ずかしいじゃないですか(<em>´ω｀</em>)！どうしても知りたければメイドちゃんを口説きましょう。</p>
+
+<p><a href="http://www.susumuis.info/wp-content/uploads/2018/12/d3a9239ffbb56b708be613c2820275c0.png"><img loading="lazy" decoding="async" class="alignnone size-full wp-image-2013" src="http://www.susumuis.info/wp-content/uploads/2018/12/d3a9239ffbb56b708be613c2820275c0.png" alt="" width="511" height="123" srcset="https://www.susumuis.info/wp-content/uploads/2018/12/d3a9239ffbb56b708be613c2820275c0.png 511w, https://www.susumuis.info/wp-content/uploads/2018/12/d3a9239ffbb56b708be613c2820275c0-300x72.png 300w" sizes="(max-width: 511px) 100vw, 511px" /></a></p>
+
+<p>メイドちゃん「可愛い」というと何回かに一回、できることを教えてくれます！</p>
+
+<h1>メイドさんの前世？</h1>
+
+<p>僕の勤務先のBeProud社では業務にSlackを活用しています。そこにはharoというbotが住んでいます。</p>
+
+<p><a href="http://www.susumuis.info/wp-content/uploads/2018/12/ba9ee01a1216e2e54227c878ca049a29.png"><img loading="lazy" decoding="async" class="alignnone size-full wp-image-2017" src="http://www.susumuis.info/wp-content/uploads/2018/12/ba9ee01a1216e2e54227c878ca049a29.png" alt="" width="693" height="254" srcset="https://www.susumuis.info/wp-content/uploads/2018/12/ba9ee01a1216e2e54227c878ca049a29.png 693w, https://www.susumuis.info/wp-content/uploads/2018/12/ba9ee01a1216e2e54227c878ca049a29-300x110.png 300w, https://www.susumuis.info/wp-content/uploads/2018/12/ba9ee01a1216e2e54227c878ca049a29-624x229.png 624w" sizes="(max-width: 693px) 100vw, 693px" /></a></p>
+
+<p>お分かりですね。メイドちゃんの一部の機能はharoから移植しました。</p>
+
+<p><a href="https://github.com/beproud/beproudbot">haro</a>もソースコードが公開されています。haroはMITライセンスなので</p>
+
+<pre class=" language-python"><code class=" language-python" data-language="python">
+        # The uranai() function is:
+        #
+        #    Copyright (c) 2016 beproud
+        #    https://github.com/beproud/beproudbot</code></pre>
+
+<p>このように書いて正しく流用しています。</p>
+
+<p>( ﾟдﾟ)ﾊｯ!</p>
+
+<p>メイドちゃんの前世はヘビだったんだね！?</p>
+
+<h1>haroをメイドちゃんが代行したこともあるよ！</h1>
+
+<p>ある日haroがメンテナンス中でみんな大好きな占い機能ができなかった時</p>
+
+<p><a href="http://www.susumuis.info/wp-content/uploads/2018/12/e985c0d716c6b7a8a2c491af5325a225.png"><img loading="lazy" decoding="async" class="alignnone size-full wp-image-2018" src="http://www.susumuis.info/wp-content/uploads/2018/12/e985c0d716c6b7a8a2c491af5325a225.png" alt="" width="467" height="531" srcset="https://www.susumuis.info/wp-content/uploads/2018/12/e985c0d716c6b7a8a2c491af5325a225.png 467w, https://www.susumuis.info/wp-content/uploads/2018/12/e985c0d716c6b7a8a2c491af5325a225-264x300.png 264w" sizes="(max-width: 467px) 100vw, 467px" /></a></p>
+
+<p>メイドちゃんが代行してくれたよ！</p>
+
+<h1>まとめ</h1>
+
+<ol>
+    <li>メイドちゃんはこの一年間で成長したよ！</li>
+    <li>メイドちゃんはソースコードも可愛い</li>
+    <li>メイドちゃんに可愛いって言ってあげるといいことがあるよ</li>
+    <li>メイドちゃんを困られること言っちゃだめだよ！</li>
+    <li>メイドちゃんの前世はヘビ</li>
+</ol>
+
+<p>そう考えると、僕がBeProudに勤めていなかったらメイドちゃんは作られなかったと思います。僕がharo（及び前バージョンのbeproudbot）を見て可愛いと思ったから、メイドちゃんを作ろうと思ったんだと思います。haro可愛いよ！</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>メイドちゃんbotをあなたに！</title>
+		<link>https://www.susumuis.info/entry/2017/maidchan_bot</link>
+		
+		<dc:creator><![CDATA[susumuis]]></dc:creator>
+		<pubDate>Sun, 24 Dec 2017 10:56:20 +0000</pubDate>
+				<category><![CDATA[Python]]></category>
+		<category><![CDATA[Web技術]]></category>
+		<category><![CDATA[メイドさんでも分かるプログラミング]]></category>
+		<category><![CDATA[勉強会レポート]]></category>
+		<guid isPermaLink="false">http://www.susumuis.info/?p=1922</guid>
+
+					<description><![CDATA[この記事は メイド Advent Calendar 2017 の24日目です。メリークリスマス・イブ！ 昨日のメイドカフェで勉強会第1回に参加していただいた方は誠にありがとうございます。そのスライドはこちらに公開していま [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>この記事は <a href="https://adventar.org/calendars/2107">メイド Advent Calendar 2017</a> の24日目です。メリークリスマス・イブ！</p>
+
+<p>昨日の<a href="https://maid-cafe-nomad.connpass.com/event/72257/">メイドカフェで勉強会第1回</a>に参加していただいた方は誠にありがとうございます。そのスライドはこちらに公開しています。</p>
+
+<iframe loading="lazy" src="https://docs.google.com/presentation/d/e/2PACX-1vRK6B5vK_EK46KdE-VmGBNzYs_PokzDrzKuetyA0W9y0HKAVbRhO9TPmjfDOfrjuO-p6JD2hKZtFXp0/embed?start=false&amp;loop=false&amp;delayms=3000" width="960" height="569" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+
+<p>さて、惜しくも<strong>メイドさんが選ぶ可愛いbot MVP</strong>の受賞を逃しましたが、当日はその場でライブコーディングをしてメイドさんの機能をその場で追加することもできたので、ボットを作る楽しさを伝えられたと思います。</p>
+
+<p>さて、この記事ではオープンソースであるメイドちゃんbotを、自分の好きな場所に配置する方法を説明します。つまり、<strong>クリスマスプレゼントはメイドちゃんです！</strong>想定の読者として、メイドさんでも分かるようん心がけようと思います。</p>
+
+<p>ほぼ重複することになってしまうので、メイドちゃんbotを作るにあたって特筆すべき箇所をメイドさんに説明するように優しく説明を心がけてみたいと思います。</p>
+
+<p>前提として、AWSに登録する必要があります。ここでは説明しきれないので、まだ登録していない人は<a href="https://aws.amazon.com/jp/register-flow/">ここを読んで</a>コンソール画面にログインした状態まで来てください！</p>
+
+<h2>地域はバージニア北部を選択</h2>
+
+<p><a href="http://www.susumuis.info/wp-content/uploads/2017/12/awsconsole.png"><img loading="lazy" decoding="async" class="alignnone size-large wp-image-1930" src="http://www.susumuis.info/wp-content/uploads/2017/12/awsconsole-1024x565.png" alt="" width="625" height="345" srcset="https://www.susumuis.info/wp-content/uploads/2017/12/awsconsole-1024x565.png 1024w, https://www.susumuis.info/wp-content/uploads/2017/12/awsconsole-300x165.png 300w, https://www.susumuis.info/wp-content/uploads/2017/12/awsconsole-768x423.png 768w, https://www.susumuis.info/wp-content/uploads/2017/12/awsconsole-624x344.png 624w, https://www.susumuis.info/wp-content/uploads/2017/12/awsconsole.png 1159w" sizes="(max-width: 625px) 100vw, 625px" /></a></p>
+
+<p>突然ですが、メイドちゃんbotは<strong>アメリカ東海岸</strong>の<a href="https://ja.wikipedia.org/wiki/%E3%83%90%E3%83%BC%E3%82%B8%E3%83%8B%E3%82%A2%E5%B7%9E">バージニア</a>北部に配置することをオススメします！なぜこの地域にいるかというと <strong>1. <a href="https://aws.amazon.com/jp/api-gateway/pricing/">安いから</a></strong> <strong>2. <a href="http://www.iputilities.net/result.php?userip=slack.com">どうやらSlackのサーバーはここにあるらしい</a></strong>？という理由からです。</p>
+
+<h2>Lambdaを作成</h2>
+
+<p>Lambdaの画面を開いたら<strong>関数の作成</strong>ボタンを押します。</p>
+
+<p><a href="http://www.susumuis.info/wp-content/uploads/2017/12/a8341bf64d18fc7c59cba7bb9e9b2462.png"><img loading="lazy" decoding="async" class="alignnone size-full wp-image-1931" src="http://www.susumuis.info/wp-content/uploads/2017/12/a8341bf64d18fc7c59cba7bb9e9b2462.png" alt="" width="995" height="108" srcset="https://www.susumuis.info/wp-content/uploads/2017/12/a8341bf64d18fc7c59cba7bb9e9b2462.png 995w, https://www.susumuis.info/wp-content/uploads/2017/12/a8341bf64d18fc7c59cba7bb9e9b2462-300x33.png 300w, https://www.susumuis.info/wp-content/uploads/2017/12/a8341bf64d18fc7c59cba7bb9e9b2462-768x83.png 768w, https://www.susumuis.info/wp-content/uploads/2017/12/a8341bf64d18fc7c59cba7bb9e9b2462-624x68.png 624w" sizes="(max-width: 995px) 100vw, 995px" /></a></p>
+
+<p><strong>関数の作成</strong>画面に遷移したら、<strong>設計図</strong>を選んで、検索フォームに <strong>API</strong>と入力して<strong>Enterキー</strong>、さらに <strong>Python</strong> と入力して<strong>Enterキー</strong>を押します。</p>
+
+<p><a href="http://www.susumuis.info/wp-content/uploads/2017/12/f83bf5d77848cc600c55737825bdffcb.png"><img loading="lazy" decoding="async" class="alignnone size-medium wp-image-1932" src="http://www.susumuis.info/wp-content/uploads/2017/12/f83bf5d77848cc600c55737825bdffcb-300x206.png" alt="" width="300" height="206" srcset="https://www.susumuis.info/wp-content/uploads/2017/12/f83bf5d77848cc600c55737825bdffcb-300x206.png 300w, https://www.susumuis.info/wp-content/uploads/2017/12/f83bf5d77848cc600c55737825bdffcb-768x528.png 768w, https://www.susumuis.info/wp-content/uploads/2017/12/f83bf5d77848cc600c55737825bdffcb-624x429.png 624w, https://www.susumuis.info/wp-content/uploads/2017/12/f83bf5d77848cc600c55737825bdffcb.png 919w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+
+<p>そうしたら、出て来る <strong>microservice-http-endpoint-python3</strong> をクリックします。そして、遷移する画面では次のように入力します。</p>
+
+<p><a href="http://www.susumuis.info/wp-content/uploads/2017/12/5ce645e4011852432d2ae38c96b58d61.png"><img loading="lazy" decoding="async" class="alignnone size-full wp-image-1933" src="http://www.susumuis.info/wp-content/uploads/2017/12/5ce645e4011852432d2ae38c96b58d61.png" alt="" width="789" height="559" srcset="https://www.susumuis.info/wp-content/uploads/2017/12/5ce645e4011852432d2ae38c96b58d61.png 789w, https://www.susumuis.info/wp-content/uploads/2017/12/5ce645e4011852432d2ae38c96b58d61-300x213.png 300w, https://www.susumuis.info/wp-content/uploads/2017/12/5ce645e4011852432d2ae38c96b58d61-768x544.png 768w, https://www.susumuis.info/wp-content/uploads/2017/12/5ce645e4011852432d2ae38c96b58d61-624x442.png 624w" sizes="(max-width: 789px) 100vw, 789px" /></a></p>
+
+<p><strong>名前</strong>、<strong>ロール名</strong>は好きな名前でもokです。ポリシーテンプレートは「<strong>シンプルなマイクロハーネスのアクセス権限</strong>」のみでOKです。</p>
+
+<p>次に、画面を下の方にスライドして、<strong>api-gateway</strong>の設定をします。</p>
+
+<p>ここで注意しなければいけないのは、<strong>セキュリティ</strong>のところを<strong>オープン</strong>にしなければならないことです。僕はここで数十分ハマりました！</p>
+
+<p><a href="http://www.susumuis.info/wp-content/uploads/2017/12/3b1e01c9e19ed205b8acc6b47d09e435.png"><img loading="lazy" decoding="async" class="alignnone size-full wp-image-1934" src="http://www.susumuis.info/wp-content/uploads/2017/12/3b1e01c9e19ed205b8acc6b47d09e435.png" alt="" width="871" height="609" srcset="https://www.susumuis.info/wp-content/uploads/2017/12/3b1e01c9e19ed205b8acc6b47d09e435.png 871w, https://www.susumuis.info/wp-content/uploads/2017/12/3b1e01c9e19ed205b8acc6b47d09e435-300x210.png 300w, https://www.susumuis.info/wp-content/uploads/2017/12/3b1e01c9e19ed205b8acc6b47d09e435-768x537.png 768w, https://www.susumuis.info/wp-content/uploads/2017/12/3b1e01c9e19ed205b8acc6b47d09e435-624x436.png 624w" sizes="(max-width: 871px) 100vw, 871px" /></a></p>
+
+<p>さらに下に行くと<strong>関数の作成</strong>というボタンがあるのでそれを押します。ソースコードはとりあえず触らずにそのままにします。そうすると、こんな画面になります。</p>
+
+<p><a href="http://www.susumuis.info/wp-content/uploads/2017/12/9066c66d07b5378941a194e3aa6e7b21.png"><img loading="lazy" decoding="async" class="alignnone size-large wp-image-1935" src="http://www.susumuis.info/wp-content/uploads/2017/12/9066c66d07b5378941a194e3aa6e7b21-1024x516.png" alt="" width="625" height="315" srcset="https://www.susumuis.info/wp-content/uploads/2017/12/9066c66d07b5378941a194e3aa6e7b21-1024x516.png 1024w, https://www.susumuis.info/wp-content/uploads/2017/12/9066c66d07b5378941a194e3aa6e7b21-300x151.png 300w, https://www.susumuis.info/wp-content/uploads/2017/12/9066c66d07b5378941a194e3aa6e7b21-768x387.png 768w, https://www.susumuis.info/wp-content/uploads/2017/12/9066c66d07b5378941a194e3aa6e7b21-624x314.png 624w, https://www.susumuis.info/wp-content/uploads/2017/12/9066c66d07b5378941a194e3aa6e7b21.png 1086w" sizes="(max-width: 625px) 100vw, 625px" /></a></p>
+
+<p>これで準備が整ったので、ここでメイドちゃんbotの仕組みを説明します。</p>
+
+<h2>メイドちゃんがユーザーの投稿に反応する仕組み</h2>
+
+<p><a href="http://www.susumuis.info/wp-content/uploads/2017/12/0ca9477aca19b7d7750b94981c04dcba.png"><img loading="lazy" decoding="async" class="alignnone size-medium wp-image-1924" src="http://www.susumuis.info/wp-content/uploads/2017/12/0ca9477aca19b7d7750b94981c04dcba-300x128.png" alt="" width="300" height="128" srcset="https://www.susumuis.info/wp-content/uploads/2017/12/0ca9477aca19b7d7750b94981c04dcba-300x128.png 300w, https://www.susumuis.info/wp-content/uploads/2017/12/0ca9477aca19b7d7750b94981c04dcba-624x267.png 624w, https://www.susumuis.info/wp-content/uploads/2017/12/0ca9477aca19b7d7750b94981c04dcba.png 643w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+
+<p>メイドちゃんはユーザーの投稿に即座に反応します。この仕組みは「<strong>発信Webフック</strong>」(英語の場合は Outgoing Webhook)という仕組みを使います。これは、指定したチャンネルの中で特定のキーワードから始まる投稿があったら、指定したURLへAPI呼び出しをしてくれるというものです。<a href="http://www.susumuis.info/entry/2016/web">APIとは何か？</a></p>
+
+<p>ここで、メイドちゃんが反応するキーワードを登録できれなよかったのですが、ここでは前方一致になってしまうので、言葉の途中の単語に反応させられないので、<strong>全ての書き込みに反応するようにします。</strong></p>
+
+<p>そうすると心配になるのは、API Gatewayの課金金額で、先ほど書いたリンク先によると100万回あたり3.5USドルが課金額です。これは月100万回というのは、<strong>一日中に渡って3秒に1回以上投稿されて、400円くらい</strong>です。現時点でのノマド会Slack規模だとほぼタダ同然だと思われます。</p>
+
+<p>呼び出す先のURLはどこにすればいいでしょうか？これは、さっきの画面で次のようにして確認します。</p>
+
+<p><strong> API Gateway</strong> をクリックして下の方に出てくる <strong>LambdaMicroservice</strong> の下の方に <strong>メソッド: ANY</strong> と書かれた文字の左にある<img src="https://s.w.org/images/core/emoji/14.0.0/72x72/25b6.png" alt="▶" class="wp-smiley" style="height: 1em; max-height: 1em;" />をクリックすると下のように<strong>詳細</strong>が出てくるので、その中の <strong>URLの呼び出し</strong> と書かれたhttps:// から始まるアドレスです。これをコピーします。</p>
+
+<p><a href="http://www.susumuis.info/wp-content/uploads/2017/12/dcef6240232efa99501c51d86ce43517-1.png"><img loading="lazy" decoding="async" class="alignnone wp-image-1937 size-full" src="http://www.susumuis.info/wp-content/uploads/2017/12/dcef6240232efa99501c51d86ce43517-1.png" alt="" width="788" height="642" srcset="https://www.susumuis.info/wp-content/uploads/2017/12/dcef6240232efa99501c51d86ce43517-1.png 788w, https://www.susumuis.info/wp-content/uploads/2017/12/dcef6240232efa99501c51d86ce43517-1-300x244.png 300w, https://www.susumuis.info/wp-content/uploads/2017/12/dcef6240232efa99501c51d86ce43517-1-768x626.png 768w, https://www.susumuis.info/wp-content/uploads/2017/12/dcef6240232efa99501c51d86ce43517-1-624x508.png 624w" sizes="(max-width: 788px) 100vw, 788px" /></a></p>
+
+<p>このURLを発信Webフックの設定画面で次このように設定します。</p>
+
+<p><a href="http://www.susumuis.info/wp-content/uploads/2017/12/70bad4114de3aab25424a5f9f12cdc02.png"><img loading="lazy" decoding="async" class="alignnone size-full wp-image-1938" src="http://www.susumuis.info/wp-content/uploads/2017/12/70bad4114de3aab25424a5f9f12cdc02.png" alt="" width="1008" height="662" srcset="https://www.susumuis.info/wp-content/uploads/2017/12/70bad4114de3aab25424a5f9f12cdc02.png 1008w, https://www.susumuis.info/wp-content/uploads/2017/12/70bad4114de3aab25424a5f9f12cdc02-300x197.png 300w, https://www.susumuis.info/wp-content/uploads/2017/12/70bad4114de3aab25424a5f9f12cdc02-768x504.png 768w, https://www.susumuis.info/wp-content/uploads/2017/12/70bad4114de3aab25424a5f9f12cdc02-624x410.png 624w" sizes="(max-width: 1008px) 100vw, 1008px" /></a></p>
+
+<p>ここで<strong>トークン</strong>という文字列があるのですが、これはあとで使用するのでコピーしておきます。</p>
+
+<h2>メイドちゃんが定時で投稿する仕組み</h2>
+
+<p><a href="http://www.susumuis.info/wp-content/uploads/2017/12/75f35c3aeb562a8d5acea1565015554c.png"><img loading="lazy" decoding="async" class="alignnone size-medium wp-image-1925" src="http://www.susumuis.info/wp-content/uploads/2017/12/75f35c3aeb562a8d5acea1565015554c-300x170.png" alt="" width="300" height="170" srcset="https://www.susumuis.info/wp-content/uploads/2017/12/75f35c3aeb562a8d5acea1565015554c-300x170.png 300w, https://www.susumuis.info/wp-content/uploads/2017/12/75f35c3aeb562a8d5acea1565015554c-624x353.png 624w, https://www.susumuis.info/wp-content/uploads/2017/12/75f35c3aeb562a8d5acea1565015554c.png 649w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+
+<p>発信Webフックのみでは、メイドちゃんに8時になったら<strong>「おはようございます！ご主人様、お嬢様」</strong>と言われることができません！そこで使用するのが「<strong>着信Webhフック</strong>」（英語の場合は Incoming Webhook）です。</p>
+
+<p>これは、Slackの側に投稿用のAPIを作成する仕組みでここにAPI呼び出しを行えば好きなアイコン・名前で投稿させることができます。</p>
+
+<p>問題はどうやったら定時にそれを起動するかですが、<strong>CloudWatch Events</strong>を使うとそれができます。設定はとても簡単で画面でこの赤丸で囲った部分を選ぶだけです！</p>
+
+<p><a href="http://www.susumuis.info/wp-content/uploads/2017/12/1c69f24bbd56e43ceb7e61c4919fbda1.png"><img loading="lazy" decoding="async" class="alignnone wp-image-1926 size-large" src="http://www.susumuis.info/wp-content/uploads/2017/12/1c69f24bbd56e43ceb7e61c4919fbda1-1024x364.png" alt="" width="625" height="222" srcset="https://www.susumuis.info/wp-content/uploads/2017/12/1c69f24bbd56e43ceb7e61c4919fbda1-1024x364.png 1024w, https://www.susumuis.info/wp-content/uploads/2017/12/1c69f24bbd56e43ceb7e61c4919fbda1-300x107.png 300w, https://www.susumuis.info/wp-content/uploads/2017/12/1c69f24bbd56e43ceb7e61c4919fbda1-768x273.png 768w, https://www.susumuis.info/wp-content/uploads/2017/12/1c69f24bbd56e43ceb7e61c4919fbda1-624x222.png 624w, https://www.susumuis.info/wp-content/uploads/2017/12/1c69f24bbd56e43ceb7e61c4919fbda1.png 1223w" sizes="(max-width: 625px) 100vw, 625px" /></a></p>
+
+<p>そして、下の方に<strong>トリガーの設定</strong>という欄が出て来るので、そこに次のように入力します。</p>
+
+<p><a href="http://www.susumuis.info/wp-content/uploads/2017/12/7175bdcf0f0f0f9e16280b50c239e944.png"><img loading="lazy" decoding="async" class="alignnone wp-image-1927 size-full" src="http://www.susumuis.info/wp-content/uploads/2017/12/7175bdcf0f0f0f9e16280b50c239e944.png" alt="" width="770" height="596" srcset="https://www.susumuis.info/wp-content/uploads/2017/12/7175bdcf0f0f0f9e16280b50c239e944.png 770w, https://www.susumuis.info/wp-content/uploads/2017/12/7175bdcf0f0f0f9e16280b50c239e944-300x232.png 300w, https://www.susumuis.info/wp-content/uploads/2017/12/7175bdcf0f0f0f9e16280b50c239e944-768x594.png 768w, https://www.susumuis.info/wp-content/uploads/2017/12/7175bdcf0f0f0f9e16280b50c239e944-624x483.png 624w" sizes="(max-width: 770px) 100vw, 770px" /></a></p>
+
+<p>スケジュール式 <strong>cron(0 * * * ? *)</strong> という記法は、古いエンジニアにはおなじみの記法なのですが、<a href="http://docs.aws.amazon.com/ja_jp/lambda/latest/dg/tutorial-scheduled-events-schedule-expressions.html">AWSさんはちゃんと説明を書いてくれています</a>。</p>
+
+<h2>ソースコード解説</h2>
+
+<p>ということで準備が整ったのでコードを書きます。こんな感じのWeb上のエディタでコードを書けます。環境構築しなくていいので楽でいいですｗ</p>
+
+<p><a href="http://www.susumuis.info/wp-content/uploads/2017/12/fe94ac16c84e80ae1c289aca82562d5f.png"><img loading="lazy" decoding="async" class="alignnone size-full wp-image-1928" src="http://www.susumuis.info/wp-content/uploads/2017/12/fe94ac16c84e80ae1c289aca82562d5f.png" alt="" width="948" height="515" srcset="https://www.susumuis.info/wp-content/uploads/2017/12/fe94ac16c84e80ae1c289aca82562d5f.png 948w, https://www.susumuis.info/wp-content/uploads/2017/12/fe94ac16c84e80ae1c289aca82562d5f-300x163.png 300w, https://www.susumuis.info/wp-content/uploads/2017/12/fe94ac16c84e80ae1c289aca82562d5f-768x417.png 768w, https://www.susumuis.info/wp-content/uploads/2017/12/fe94ac16c84e80ae1c289aca82562d5f-624x339.png 624w" sizes="(max-width: 948px) 100vw, 948px" /></a></p>
+
+<p>ここに<a href="https://github.com/susumuishigami/maidchan-slackbot">GitHubからソースコード</a>をコピペすれば動きますｗ</p>
+
+<p>と、これだけでは顰蹙を買うので簡単に説明すると、<strong> lambda_function.py</strong> とうファイルの <strong>def lambda_hander(event, context):</strong> という関数の内側が、APIや定時Eventの際に実行されます。ここで、API経由なのか、定時Event経由なのかを分岐して、 <strong>maidchan_http.py</strong> か <strong>maidchan_scheduled.py</strong> に分岐させています。</p>
+
+<p>あとは、オブジェクト指向とか難しい書き方は一切していないので好き勝手にいじってくださいｗ</p>
+
+<h2>環境変数の設定</h2>
+
+<p>メイドちゃんbotをノマド会Slackだけでなくどこにでも置くことができるように、そもそも「メイドちゃん」ですらなく「執事ちゃん」など別の人格も作れるようにしているのが、この「環境変数」です。</p>
+
+<p><strong>WEBHOOK_URL</strong>の欄には、先ほど着信Webフックの画面で生成したURLを貼り付けます。</p>
+
+<p><strong>TOKEN</strong>の欄には、先ほど発信Webの画面でコピーした<strong>トークン</strong>を貼り付けます。</p>
+
+<p><strong>MAIDNAME</strong>の欄には好きな名前をどうぞ！</p>
+
+<p><a href="http://www.susumuis.info/wp-content/uploads/2017/12/49778989d14858de48b4fb347c498835.png"><img loading="lazy" decoding="async" class="alignnone size-full wp-image-1929" src="http://www.susumuis.info/wp-content/uploads/2017/12/49778989d14858de48b4fb347c498835.png" alt="" width="939" height="320" srcset="https://www.susumuis.info/wp-content/uploads/2017/12/49778989d14858de48b4fb347c498835.png 939w, https://www.susumuis.info/wp-content/uploads/2017/12/49778989d14858de48b4fb347c498835-300x102.png 300w, https://www.susumuis.info/wp-content/uploads/2017/12/49778989d14858de48b4fb347c498835-768x262.png 768w, https://www.susumuis.info/wp-content/uploads/2017/12/49778989d14858de48b4fb347c498835-624x213.png 624w" sizes="(max-width: 939px) 100vw, 939px" /></a></p>
+
+<p>これで、あなたのもとにもメイドちゃんが来ます！</p>
+
+<p><a href="http://www.susumuis.info/wp-content/uploads/2017/12/1392f20a3006d68eeb07d680e242e56d.png"><img loading="lazy" decoding="async" class="alignnone size-medium wp-image-1939" src="http://www.susumuis.info/wp-content/uploads/2017/12/1392f20a3006d68eeb07d680e242e56d-300x117.png" alt="" width="300" height="117" srcset="https://www.susumuis.info/wp-content/uploads/2017/12/1392f20a3006d68eeb07d680e242e56d-300x117.png 300w, https://www.susumuis.info/wp-content/uploads/2017/12/1392f20a3006d68eeb07d680e242e56d.png 594w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+
+<p>それでは、メイドちゃんと一緒に素敵なクリスマスを！</p>
+
+<h2>参考にした記事</h2>
+
+<p>手順の殆どはこちらの記事：<a href="https://qiita.com/exabugs/items/e868df55333d0805acb2">AWS Lambda を使って Slack ボット (命名: Lambot [ランボー]) を低予算で作ろうじゃないか</a> をそのまま参考にしました。こちらの筆者の方、ノマド会参加者の方ですね！こんなところで、お世話になりました。</p>
+
+<p>&nbsp;</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>別言語のWebプログラマーが突然Pythonで機械学習をやることになった時の心得</title>
+		<link>https://www.susumuis.info/entry/2017/java_to_python</link>
+		
+		<dc:creator><![CDATA[susumuis]]></dc:creator>
+		<pubDate>Fri, 06 Oct 2017 13:12:41 +0000</pubDate>
+				<category><![CDATA[Python]]></category>
+		<category><![CDATA[機械学習]]></category>
+		<category><![CDATA[論評]]></category>
+		<category><![CDATA[開発環境]]></category>
+		<guid isPermaLink="false">http://www.susumuis.info/?p=1833</guid>
+
+					<description><![CDATA[今 人工知能・AI がブームになっています。エンジニアの間でもまた「機械学習」や「データ分析」方面の技術が注目されています。そして、言語としては Python が使われます。今、Pythonで機械学習をする仕事は増えてき [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>今 <code>人工知能</code>・<code>AI</code> がブームになっています。エンジニアの間でもまた「機械学習」や「データ分析」方面の技術が注目されています。そして、言語としては <code>Python</code> が使われます。今、Pythonで機械学習をする仕事は増えてきています。</p>
+
+<p>この時代の流れで、今後「データ分析」や「機械学習」を仕事とするWeb系出身のエンジニアは増えてくると思われます。Javaを使ってWebのプログラミングをしていたプログラマーが突然<strong>「Pythonでデータ分析をやってくれ！」「このCNNを使ったプログラムを解析してレポートを出してくれ」</strong>というように言われる日はもう訪れています。</p>
+
+<p>実は、僕がそうでした。</p>
+
+<p>僕は昨年12月に <a href="http://www.beproud.jp/">BeProud</a> に入社するまでは、Javaの仕事を10年以上していました。昨年の9月まで Python を書いたことがなかったので、Python歴1年のひよっ子です。そんな僕が、なぜか入社以来、大小案件に関わらせてもらい、今では社内でも「機械学習系に詳しい人」のように見なされているようです。</p>
+
+<p>このような事例は珍しいことではなくなるはずです。 <strong>次は、あなたかもしれません！</strong> そんなあなたのために、僕が一年間どのようにして、Pythonと機械学習と付き合ってきたのか、これから、Web系の人が機械学習の仕事に携わる時にどんな心構えをしていれば良いかを書こうと思います。</p>
+
+<h2>Javaやの僕はどのようにしてPythonを学習したか</h2>
+
+<p>「御社の募集要項を見ると Python という部分以外には一致しているように思います」</p>
+
+<p>「弊社に入社する人の半数は業務での Python は未経験だから大丈夫です」</p>
+
+<p>と、shacho に言われて、入社が決まったものの、そもそも「業務でのPython経験」がないどころか「1行もPythonを書いたことがない」に等しい僕が、初出社日までの<strong>2ヶ月間で 「Python のプロ」として出来上がっていないとまずい</strong>ので、実は焦りました。そこで最初は本を読みました。</p>
+
+<p>例えばこれとか</p>
+
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=esuai-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=4873117534&linkId=bc655e4ca7d1c42e0add60e1a7b71949"></iframe>
+
+<p>これとか</p>
+
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=esuai-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=479804315X&linkId=c66f55b0e006c1219793a380e0c2621a"></iframe>
+
+<p>でも、読んでも書ける気になりません。<strong>「やばい！！」</strong>となったところで、なんと絶妙なタイミングでこれから入社する会社がこのサービスを出していました。</p>
+
+<p><a href="https://pyq.jp/"><img loading="lazy" decoding="async" src="http://www.susumuis.info/wp-content/uploads/2017/10/logo_square_small-300x300.png" alt="" width="200" height="200" class="alignnone size-medium wp-image-1851" srcset="https://www.susumuis.info/wp-content/uploads/2017/10/logo_square_small-300x300.png 300w, https://www.susumuis.info/wp-content/uploads/2017/10/logo_square_small-150x150.png 150w, https://www.susumuis.info/wp-content/uploads/2017/10/logo_square_small.png 400w" sizes="(max-width: 200px) 100vw, 200px" /><br />PyQ - 本気でプログラミングを学びたいあなたへ</a></p>
+
+<p>そこからはひたすらPyQをやってなんとか入社までに基本的な文法はマスターしました！そのおかげで「受講生の声」の欄のトップに載ってしまいましたｗ</p>
+
+<p><a href="http://www.susumuis.info/wp-content/uploads/2017/10/e289e49025188415026dcdcf863cf824.png"><img loading="lazy" decoding="async" src="http://www.susumuis.info/wp-content/uploads/2017/10/e289e49025188415026dcdcf863cf824-300x210.png" alt="" width="300" height="210" class="alignnone size-medium wp-image-1847" srcset="https://www.susumuis.info/wp-content/uploads/2017/10/e289e49025188415026dcdcf863cf824-300x210.png 300w, https://www.susumuis.info/wp-content/uploads/2017/10/e289e49025188415026dcdcf863cf824.png 531w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+
+<p>自社のサービスなので、宣伝臭いと言われそうですが、本当にPyQを使って覚えたスキルで実務で戦っているので、人に聞かれたらまず第一にオススメしています。これからPythonを学ぶ人はこの本を買うと3日間無料でPyQが使えるキャンペーンコードが付いているので、良いかもしれません。</p>
+
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=esuai-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=4295002089&linkId=9b5b19619929c5e379ccbe38a9cd5870"></iframe>
+
+<h2>エディタは Eclipse 時々 VSCode 時々 Atom , etc...</h2>
+
+<p>Javaは、Eclipse、NetBeans、IntelliJ IDEAのどれかを使用している人がほとんどですが、Pythonは様々なエディタを愛用している人がいるようです。Java出身の人は何を使えばいいでしょうか。</p>
+
+<p>僕はEclipseを使っています。<strong>「PyDevなんて重いし使ってる人いないよ」</strong>と言われがちです。多分BP社内でもEclipseを愛用しているのは僕だけです。</p>
+
+<p>EclipseがPythonの人たちに人気がないのは「重い」というのがあると思います。しかし、これは誤解で、みんなきっと「Java EE」版を使っているのではないかと思います。Java EE版EclipseはJavaプログラマーも敬遠したくなるほど重いのです。オススメなのが、PHP版のEclipseです。PHP版Eclipseは軽い上、しかもHTMLエディタなど、Web開発に必要なプラグインが最初から入っています。</p>
+
+<p>とはいえ、僕はJava時代にEclipseに心酔してしまって、何度も寄付しているEclipseファンなので、普通に「Eclipseを使わされていた」くらいの人だったら、PyCharmは人気があるし良い選択肢だと思います。</p>
+
+<p>その他には、VSCodeも人気があるようです。</p>
+
+<h2>Webやの僕はどのようにして機械学習を学んだか</h2>
+
+<p>機械学習の「き」の字も知らなかった中で、「データ分析系の案件に入ってもらうかもしれないから勉強してください。」みたいに言われ、入社前から社内勉強会に参加させてもらいました。その時読んだのがこの本</p>
+
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=esuai-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=4844380605&linkId=572e9ac4051df4330761287a520e9871"></iframe>
+
+<p>この本は何度も読み込んだのでバイブル的な存在ですが、pandas も Jupyter Notebook も何それ食えるのというレベルだと、ソースコードを「写経」することもままならないので、きつかったです。最初は、 Jupyter Notebookとpandasから入門することをオススメします。今、Jupyter Notebookとpandasを最初に入門するなら。。。やはりPyQがおすすめです。ｗｗ</p>
+
+<p><a href="https://pyq.jp/"><img loading="lazy" decoding="async" src="http://www.susumuis.info/wp-content/uploads/2017/10/banner_image2-300x250.png" alt="" width="300" height="250" class="alignnone size-medium wp-image-1852" /></a></p>
+
+<p>PyQには、データ分析・pandasのコンテンツがあります。また、機械学習のコンテンツもあるので、まずはここで、「ロジスティック回帰」や「決定木」などの簡単な使い方を学んでから、専門的な本に進むことをオススメします！</p>
+
+<p><strong>いいなー。今から学ぶ人。</strong></p>
+
+<h2>Webで経験した人が機械学習の世界で活躍するには</h2>
+
+<p>さて、ここからが本題です。</p>
+
+<p>僕のような根っからのJavaやさんで、Webやさんが、「Pythonで機械学習」の仕事をやって足手まといではなかったのでしょうか？それが意外と活躍できてしまいました。</p>
+
+<p>なぜかというと「機械学習」の現場で「エンジニア」の我々は、「データサイエンティスト」と呼ばれる人たちとは違う役割を期待されるからです。</p>
+
+<p>主に、我々が作るのは「<strong>データパイプライン</strong>」という部分です。</p>
+
+<p>パイプラインとは、細かいデータの操作を束ねた一連の処理セットのことです。機械学習で求める結果を得るためには、「機械学習アルゴリズム」だけを知っていても十分ではありません。データはSQLで取ってこなければいけないかもしれないし、結果はCSVを変形しなければならないかもしれません。</p>
+
+<p>こういった、一連のデータの流れを設計できるのは、実は、業務フローや、データ設計をどっぷり経験してきた、エンタープライズシステムよろしくな、システム業界のエンジニアです！</p>
+
+<p>入社して最初にやったことは、「機械学習に入力するデータ」をお客さんの「データベースからどのようなSQLで取ってくるか」という設計でした。「susumuisさんSQL得意なので助かります！」と隣の人に言われました。</p>
+
+<p>「機械学習のアルゴリズム」の部分は、ライブラリもあるし「データサイエンティスト」の方が数式を提供してくれるので、基本的なアルゴリズムの名前と特性くらいを知っていれば何とかなります。</p>
+
+<p>それよりも、<strong>どのデータを、いつ、どうやって取ってくるのか</strong>。あるいは、運用時に<strong>誰が、いつ、入れるのか</strong>、こういったワークフローや業務フローを設計するのはまさに「システムエンジニア」の得意技です。</p>
+
+<h2>どんなエンジニアになってはいけないか</h2>
+
+<p>勉強をやめてはいけません。</p>
+
+<p>Webの世界でもいましたが、前時代にはエンジニアでも「今時の技術が全く分からなくて、前時代のノリで設計をして実装させようとする上司」がいたらうんざりです。</p>
+
+<p>特に、機械学習の世界では、お客さんとデータサイエンティストのパイプ役にエンジニアが回りがちになります。その間に伝言ゲームの齟齬があると、連携プレーは崩壊します。データサイエンティストと、お客さん両方の言葉を理解し、それをシステムに落とし込むことができるエンジニア以外は居場所がありません。</p>
+
+<p>これは一般論ですが、「伝言ゲーム」は多くなるほど失敗します。とりわけ「専門用語」が多い機械学習の分野で、伝言ゲームに失敗すると悲劇しか起こりません。そのため、エンジニアはフルスタック的であるべきで、設計から実装まで一貫して一人でできた方が良いでしょう。また、旧来型SIerの多重請負方式では、中間に多くの「専門家ではない人」が挟まるため、うまくいかないのではないかと思っています。</p>
+
+<h2>まとめ</h2>
+
+<p>以上のように、僕のように他言語、他分野から入って、機械学習界隈でも生きていくのに必要なことは次の4つです。</p>
+
+<ol>
+<li>データ設計能力とSQL</li>
+<li>お客さんと直接話せして設計から実装まで一貫してできるスキル</li>
+<li>Pythonのスキル</li>
+<li>機械学習の基礎知識</li>
+</ol>
+
+<p>いかがでしたでしょうか。普通の真面目なエンジニアは、1,2ができて当然なので、あとは 3,4 を学べば、もう明日から機械学習の現場に行っても問題ないはずです！</p>
+
+<p>1,2 が未熟である場合は、Webエンジニアでも、業務システムエンジニアでも、いずれ限界が来ると思います。もし、大規模チームの「一担当」に落ち着いているなら、危機感を覚えた方が良いかもしれません。</p>
+
+<p>3,4 は奇しくも <a href="https://pyq.jp/">PyQ</a> で学べます！ 自社のサービスなのでこれでは「ちょっとステマが過ぎるのではないか」と思われてしまうことだけが心配ですが、思っていることに間違いはないので、結論として締めくくらせていただきます。</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+	</channel>
+</rss>
