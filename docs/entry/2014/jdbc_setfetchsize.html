@@ -133,13 +133,13 @@ Webエンジニア <a href="http://twitter.com/susumuis">susumuis</a> の技術�
 
 <p>とか書いて置いて、ほらちゃんとresult.nextで順次的に処理してるし、try with resourceでcloseもバッチリ！といっても、俺偉いとか思わない。executeQueryを実行した直後のヒープダンプがコレ。</p>
 
-<p><a href="../../wp-content/uploads/2014/11/dump.png"><img fetchpriority="high" decoding="async" src="../../wp-content/uploads/2014/11/dump-300x195.png" alt="ResultSetのインスタンスが60%以上取っている" width="300" height="195" class="alignnone size-medium wp-image-1189" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2014/11/dump-300x195.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2014/11/dump.png 449w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p><a href="../../wp-content/uploads/2014/11/dump.png"><img fetchpriority="high" decoding="async" src="../../wp-content/uploads/2014/11/dump-300x195.png" alt="ResultSetのインスタンスが60%以上取っている" width="300" height="195" class="alignnone size-medium wp-image-1189" /></a></p>
 
 <p>まだresult.next()していない。そんな！ResultSetはデータそのものじゃなくて、接続の管理クラスみたいなやつだから、実際はnextして順次的にDBから値をもらうんだって教わった。なのにどうもメモリを食ってる。</p>
 
 <p>ヒープダンプの中身を解析してみる。</p>
 
-<p><a href="../../wp-content/uploads/2014/11/dump2.png"><img decoding="async" src="../../wp-content/uploads/2014/11/dump2-262x300.png" alt="rowsというVectorに全部のデータが格納されている" width="262" height="300" class="alignnone size-medium wp-image-1190" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2014/11/dump2-262x300.png 262w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2014/11/dump2.png 622w" sizes="(max-width: 262px) 100vw, 262px" /></a></p>
+<p><a href="../../wp-content/uploads/2014/11/dump2.png"><img decoding="async" src="../../wp-content/uploads/2014/11/dump2-262x300.png" alt="rowsというVectorに全部のデータが格納されている" width="262" height="300" class="alignnone size-medium wp-image-1190" /></a></p>
 
 <p>rowsというVectorがデカイ。</p>
 

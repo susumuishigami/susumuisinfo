@@ -432,7 +432,7 @@ public class HelloServlet extends HttpServlet {
 <p>1分以内に全部のロードが終わりました。<br />
 その際のリソース使用量はこんな感じです。</p>
 
-<p><a href="wp-content/uploads/2014/12/tomcat_deploy_visualvm.png"><img fetchpriority="high" decoding="async" src="wp-content/uploads/2014/12/tomcat_deploy_visualvm-300x215.png" alt="徐々に上がって、メモリ使用量750MBあたりで安定" width="300" height="215" class="alignnone size-medium wp-image-1201" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2014/12/tomcat_deploy_visualvm-300x215.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2014/12/tomcat_deploy_visualvm-1024x737.png 1024w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2014/12/tomcat_deploy_visualvm-624x449.png 624w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2014/12/tomcat_deploy_visualvm.png 1353w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p><a href="wp-content/uploads/2014/12/tomcat_deploy_visualvm.png"><img fetchpriority="high" decoding="async" src="wp-content/uploads/2014/12/tomcat_deploy_visualvm-300x215.png" alt="徐々に上がって、メモリ使用量750MBあたりで安定" width="300" height="215" class="alignnone size-medium wp-image-1201" /></a></p>
 
 <p>本当にデプロイされているのか、全部のアプリケーションにアクセスしてみましょう。</p>
 
@@ -451,7 +451,7 @@ public class HelloServlet extends HttpServlet {
 <p>※Windowsのコマンドプロンプトだと、文字化けします。文字コードがShiftJISじゃないとダメみたいです。</p>
 
 <p>管理コンソールだってちゃんと機能します。ほら！<br />
-<a href="wp-content/uploads/2014/12/tomcat_manager.png"><img decoding="async" src="wp-content/uploads/2014/12/tomcat_manager-300x290.png" alt="アプリ1000個くらいデプロイしても管理画面はさくっと機能します" width="300" height="290" class="alignnone size-medium wp-image-1202" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2014/12/tomcat_manager-300x290.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2014/12/tomcat_manager-1024x992.png 1024w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2014/12/tomcat_manager-624x604.png 624w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2014/12/tomcat_manager.png 1059w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<a href="wp-content/uploads/2014/12/tomcat_manager.png"><img decoding="async" src="wp-content/uploads/2014/12/tomcat_manager-300x290.png" alt="アプリ1000個くらいデプロイしても管理画面はさくっと機能します" width="300" height="290" class="alignnone size-medium wp-image-1202" /></a></p>
 
 <p>最後に、アンデプロイです。これは、warファイルを消すと、それを検知して勝手に配備解除してくれます。解除の順番はばらばらで、配置よりはゆっくりですが、でも確実に配備解除されました。おりこうですね！</p>
 
@@ -558,15 +558,15 @@ DEPLOYMENT-00035;|
   [AutoDeploy]自動デプロイは正常に実行されました : H:\java\glassfish4\glassfish\domains\domain1\autodeploy\Hello251.war。|#]
 </code></pre>
 
-<p><a href="wp-content/uploads/2014/12/glassfish_deploy_visualvm.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2014/12/glassfish_deploy_visualvm-300x278.png" alt="glassfishのロード時のvisualvm表示、GCが頻繁に走っているのか、ヒープ使用量のグラフが穏やかでない" width="300" height="278" class="alignnone size-medium wp-image-1204" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2014/12/glassfish_deploy_visualvm-300x278.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2014/12/glassfish_deploy_visualvm-1024x950.png 1024w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2014/12/glassfish_deploy_visualvm-624x579.png 624w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2014/12/glassfish_deploy_visualvm.png 1049w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p><a href="wp-content/uploads/2014/12/glassfish_deploy_visualvm.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2014/12/glassfish_deploy_visualvm-300x278.png" alt="glassfishのロード時のvisualvm表示、GCが頻繁に走っているのか、ヒープ使用量のグラフが穏やかでない" width="300" height="278" class="alignnone size-medium wp-image-1204" /></a></p>
 
 <p>結局、約35分にしてロードが終わりました。では、せっかくのアプリケーションサーバーなので管理コンソールを開いてみましょう。。。。</p>
 
-<p><a href="wp-content/uploads/2014/12/glassfish_admin-e1417782751459.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2014/12/glassfish_admin-e1417782751459-300x245.png" alt="管理コンソールでアプリケーションクリック「長時間実行中のプロセスが検出されました。お待ちください...」と表示されて固まっている" width="300" height="245" class="alignnone size-medium wp-image-1205" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2014/12/glassfish_admin-e1417782751459-300x245.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2014/12/glassfish_admin-e1417782751459-624x511.png 624w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2014/12/glassfish_admin-e1417782751459.png 957w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p><a href="wp-content/uploads/2014/12/glassfish_admin-e1417782751459.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2014/12/glassfish_admin-e1417782751459-300x245.png" alt="管理コンソールでアプリケーションクリック「長時間実行中のプロセスが検出されました。お待ちください...」と表示されて固まっている" width="300" height="245" class="alignnone size-medium wp-image-1205" /></a></p>
 
 <p>画面が返ってこなくなりました</p>
 
-<p><a href="wp-content/uploads/2014/12/17097c9dd45e753cd011350f9bbc90bd.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2014/12/17097c9dd45e753cd011350f9bbc90bd-300x88.png" alt="死んだ魚" width="300" height="88" class="alignnone size-medium wp-image-1200" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2014/12/17097c9dd45e753cd011350f9bbc90bd-300x88.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2014/12/17097c9dd45e753cd011350f9bbc90bd-624x184.png 624w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2014/12/17097c9dd45e753cd011350f9bbc90bd.png 919w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p><a href="wp-content/uploads/2014/12/17097c9dd45e753cd011350f9bbc90bd.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2014/12/17097c9dd45e753cd011350f9bbc90bd-300x88.png" alt="死んだ魚" width="300" height="88" class="alignnone size-medium wp-image-1200" /></a></p>
 
 <h2>勝ち誇るTomcat</h2>
 

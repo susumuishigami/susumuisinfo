@@ -127,11 +127,11 @@ Webエンジニア <a href="http://twitter.com/susumuis">susumuis</a> の技術�
 
 <p>ところで、プログラムは通常、上から順に書いたとおりに実行されます。途中で遅い処理があると、その処理が終わるまであとの処理は行われないのが大原則です。</p>
 
-<p><a href="wp-content/uploads/2016/01/eef66e5acdf43d3339b97b40706924c5.png"><img fetchpriority="high" decoding="async" src="wp-content/uploads/2016/01/eef66e5acdf43d3339b97b40706924c5.png" alt="通信している間待つ" width="960" height="720" class="alignnone size-full wp-image-1768" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/eef66e5acdf43d3339b97b40706924c5.png 960w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/eef66e5acdf43d3339b97b40706924c5-300x225.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/eef66e5acdf43d3339b97b40706924c5-624x468.png 624w" sizes="(max-width: 960px) 100vw, 960px" /></a></p>
+<p><a href="wp-content/uploads/2016/01/eef66e5acdf43d3339b97b40706924c5.png"><img fetchpriority="high" decoding="async" src="wp-content/uploads/2016/01/eef66e5acdf43d3339b97b40706924c5.png" alt="通信している間待つ" width="960" height="720" class="alignnone size-full wp-image-1768" /></a></p>
 
 <p>もし、Webサーバーとの通信のような遅い処理を待ってしまったらどうなってしまうでしょうか？ボタンを押してから、サーバーが結果を返すまでの間、固まってしまうことになります。その間は、他のボタンを押すこともできませんし、ホームボタンを押してホーム画面に戻ることも、別のアプリを起動することも、アプリを終了することさえもできなくなってしまいます。</p>
 
-<p><a href="wp-content/uploads/2016/01/273d4a327ea8aba12073bc940b107437.png"><img decoding="async" src="wp-content/uploads/2016/01/273d4a327ea8aba12073bc940b107437.png" alt="通信中ボタンが押せない！--" width="886" height="621" class="alignnone size-full wp-image-1769" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/273d4a327ea8aba12073bc940b107437.png 886w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/273d4a327ea8aba12073bc940b107437-300x210.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/273d4a327ea8aba12073bc940b107437-624x437.png 624w" sizes="(max-width: 886px) 100vw, 886px" /></a></p>
+<p><a href="wp-content/uploads/2016/01/273d4a327ea8aba12073bc940b107437.png"><img decoding="async" src="wp-content/uploads/2016/01/273d4a327ea8aba12073bc940b107437.png" alt="通信中ボタンが押せない！--" width="886" height="621" class="alignnone size-full wp-image-1769" /></a></p>
 
 <p>こんなアプリを作ったらユーザーに怒られてしまいますね。(^^;<br />
 (実際はできないようになっています)</p>
@@ -142,7 +142,7 @@ Webエンジニア <a href="http://twitter.com/susumuis">susumuis</a> の技術�
 
 <p>並列処理をJavaで実現する、最も基本的な仕組みとして、「スレッド」というものがあります。Threadとは糸という意味です。一つの処理の流れを糸に例えて、複数の糸が同時に伸びて絡み合っている様子をイメージしてください。複数のスレッドを使うので、「マルチスレッド」ということもあります。</p>
 
-<p><a href="wp-content/uploads/2016/01/7df507a877acd839271582b721ba1872.png"><img decoding="async" src="wp-content/uploads/2016/01/7df507a877acd839271582b721ba1872.png" alt="スレッドは糸" width="732" height="715" class="alignnone size-full wp-image-1770" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/7df507a877acd839271582b721ba1872.png 732w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/7df507a877acd839271582b721ba1872-300x293.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/7df507a877acd839271582b721ba1872-624x610.png 624w" sizes="(max-width: 732px) 100vw, 732px" /></a></p>
+<p><a href="wp-content/uploads/2016/01/7df507a877acd839271582b721ba1872.png"><img decoding="async" src="wp-content/uploads/2016/01/7df507a877acd839271582b721ba1872.png" alt="スレッドは糸" width="732" height="715" class="alignnone size-full wp-image-1770" /></a></p>
 
 <p>Javaでスレッドを作るためにはズバリ、<code>Thread</code>というクラスを使います。書き方は2通りあります。</p>
 
@@ -194,7 +194,7 @@ t.start();
 <p>このように初めてしまったスレッドtは、もう、run()メソッドが終了するまで外側から止めることはできません。</p>
 
 <p><code>stop()</code>、<code>susupend()</code>というようなメソッドがあるように見えますが、これらは「安全ではない」と非推奨になっています。<br />
-<a href="wp-content/uploads/2016/01/26adcde5efb2ea9973e46c5c97ef221e.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/26adcde5efb2ea9973e46c5c97ef221e.png" alt="スレッドは止められない" width="882" height="584" class="alignnone size-full wp-image-1772" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/26adcde5efb2ea9973e46c5c97ef221e.png 882w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/26adcde5efb2ea9973e46c5c97ef221e-300x199.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/26adcde5efb2ea9973e46c5c97ef221e-624x413.png 624w" sizes="(max-width: 882px) 100vw, 882px" /></a></p>
+<a href="wp-content/uploads/2016/01/26adcde5efb2ea9973e46c5c97ef221e.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/26adcde5efb2ea9973e46c5c97ef221e.png" alt="スレッドは止められない" width="882" height="584" class="alignnone size-full wp-image-1772" /></a></p>
 
 <p>もし、プログラミングを失敗して、いつまでも終了しないスレッドがたくさん作られたら大変です！マシンが暴走してしまい、システムはカックカクで最終的に強制終了しなければならないでしょう。</p>
 
@@ -254,7 +254,7 @@ Thread 店員3 = new 店員スレッド();
 <li>コップは既に水で満タンなので、盛大にこぼれます！！</li>
 </ul>
 
-<p><a href="wp-content/uploads/2016/01/044cf9d5de75828a8844dd302ff6c3ec.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/044cf9d5de75828a8844dd302ff6c3ec.png" alt="データの破壊" width="914" height="488" class="alignnone size-full wp-image-1773" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/044cf9d5de75828a8844dd302ff6c3ec.png 914w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/044cf9d5de75828a8844dd302ff6c3ec-300x160.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/044cf9d5de75828a8844dd302ff6c3ec-624x333.png 624w" sizes="(max-width: 914px) 100vw, 914px" /></a></p>
+<p><a href="wp-content/uploads/2016/01/044cf9d5de75828a8844dd302ff6c3ec.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/044cf9d5de75828a8844dd302ff6c3ec.png" alt="データの破壊" width="914" height="488" class="alignnone size-full wp-image-1773" /></a></p>
 
 <p>実際の人では、そんなことは起きませんが、複数人の人が無秩序に動いていたら大変な様子が想像できると思います。</p>
 
@@ -295,7 +295,7 @@ Thread 店員3 = new 店員スレッド();
 
 <p>答えは2人の店員さんは見つめ合って固まってしまいます。＼(^o^)／</p>
 
-<p><a href="wp-content/uploads/2016/01/6c7859797c3dff69ee59a49bc61ae567.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/6c7859797c3dff69ee59a49bc61ae567.png" alt="デッドロック" width="960" height="720" class="alignnone size-full wp-image-1774" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/6c7859797c3dff69ee59a49bc61ae567.png 960w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/6c7859797c3dff69ee59a49bc61ae567-300x225.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/6c7859797c3dff69ee59a49bc61ae567-624x468.png 624w" sizes="(max-width: 960px) 100vw, 960px" /></a></p>
+<p><a href="wp-content/uploads/2016/01/6c7859797c3dff69ee59a49bc61ae567.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/6c7859797c3dff69ee59a49bc61ae567.png" alt="デッドロック" width="960" height="720" class="alignnone size-full wp-image-1774" /></a></p>
 
 <p>この現象を「デッドロック」と言います。デッドロックはとても怖い現象です。防ぐことが難しく、発生したらもう救うことができないからです。</p>
 
@@ -362,7 +362,7 @@ Thread 店員3 = new 店員スレッド();
 
 <p>この世界を実現するために、論文を読むためのソフト（Webブラウザー）と、論文を配信するホストコンピュータ（Webサーバー）が作られました。WebブラウザーとWebサーバーは互いに通信をします。通信をするための決まりごとを「プロトコル」と言います。Web専用のプロトコルとして、「HTTP (Hyper Text Transfer Protocol)」が作られました。</p>
 
-<p><a href="wp-content/uploads/2016/01/f9b025524cafcc3e5bd64687ef83670b.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/f9b025524cafcc3e5bd64687ef83670b.png" alt="WWWの世界" width="960" height="720" class="alignnone size-full wp-image-1751" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/f9b025524cafcc3e5bd64687ef83670b.png 960w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/f9b025524cafcc3e5bd64687ef83670b-300x225.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/f9b025524cafcc3e5bd64687ef83670b-624x468.png 624w" sizes="(max-width: 960px) 100vw, 960px" /></a></p>
+<p><a href="wp-content/uploads/2016/01/f9b025524cafcc3e5bd64687ef83670b.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/f9b025524cafcc3e5bd64687ef83670b.png" alt="WWWの世界" width="960" height="720" class="alignnone size-full wp-image-1751" /></a></p>
 
 <h3>用語のおさらい</h3>
 
@@ -439,7 +439,7 @@ Thread 店員3 = new 店員スレッド();
 
 <p>とてもシンプルな仕組みですね！</p>
 
-<p><a href="wp-content/uploads/2016/01/c68ffc7bd746476edb9e3036a1cfaa98.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/c68ffc7bd746476edb9e3036a1cfaa98.png" alt="HTTPの仕組み" width="674" height="419" class="alignnone size-full wp-image-1754" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/c68ffc7bd746476edb9e3036a1cfaa98.png 674w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/c68ffc7bd746476edb9e3036a1cfaa98-300x186.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/c68ffc7bd746476edb9e3036a1cfaa98-624x388.png 624w" sizes="(max-width: 674px) 100vw, 674px" /></a></p>
+<p><a href="wp-content/uploads/2016/01/c68ffc7bd746476edb9e3036a1cfaa98.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/c68ffc7bd746476edb9e3036a1cfaa98.png" alt="HTTPの仕組み" width="674" height="419" class="alignnone size-full wp-image-1754" /></a></p>
 
 <h2>WebサーバーがHTMLを自動生成しても良い</h2>
 
@@ -447,7 +447,7 @@ Thread 店員3 = new 店員スレッド();
 
 <p>Webリクエストを受け取ったWebサーバーが、プログラムを動かす仕組みとして、CGI (Common Gateway Interface) という物が作られました。</p>
 
-<p><a href="wp-content/uploads/2016/01/4667a427d9a5345fc675c0d0c2d76ad2.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/4667a427d9a5345fc675c0d0c2d76ad2.png" alt="Webプログラムの仕組み (2)" width="994" height="412" class="alignnone size-full wp-image-1755" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/4667a427d9a5345fc675c0d0c2d76ad2.png 994w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/4667a427d9a5345fc675c0d0c2d76ad2-300x124.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/4667a427d9a5345fc675c0d0c2d76ad2-624x259.png 624w" sizes="(max-width: 994px) 100vw, 994px" /></a></p>
+<p><a href="wp-content/uploads/2016/01/4667a427d9a5345fc675c0d0c2d76ad2.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/4667a427d9a5345fc675c0d0c2d76ad2.png" alt="Webプログラムの仕組み (2)" width="994" height="412" class="alignnone size-full wp-image-1755" /></a></p>
 
 <p>プログラムによって毎回違うページを作ることができるので便利です（例えば、現在時刻を出力！）このようなページのことを「動的ページ」と言います。反対に毎回変わらないページを「静的ページ」と言います。</p>
 
@@ -467,7 +467,7 @@ Thread 店員3 = new 店員スレッド();
 
 <p>しかし、問題がありました。</p>
 
-<p><a href="wp-content/uploads/2016/01/629e7e24cc890b0ad82151fae1082975.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/629e7e24cc890b0ad82151fae1082975.png" alt="GETの仕組み" width="889" height="403" class="alignnone size-full wp-image-1756" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/629e7e24cc890b0ad82151fae1082975.png 889w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/629e7e24cc890b0ad82151fae1082975-300x136.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/629e7e24cc890b0ad82151fae1082975-624x283.png 624w" sizes="(max-width: 889px) 100vw, 889px" /></a></p>
+<p><a href="wp-content/uploads/2016/01/629e7e24cc890b0ad82151fae1082975.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/629e7e24cc890b0ad82151fae1082975.png" alt="GETの仕組み" width="889" height="403" class="alignnone size-full wp-image-1756" /></a></p>
 
 <ul>
 <li>大量のデータを送ろうとすると長くなりすぎる</li>
@@ -482,7 +482,7 @@ name=taro&amp;age=20&amp;country=Japan&amp;.......
 
 <p>これによって、非常に大量の情報が遅れるようになったので、Webを使って「ご注文フォーム」が作れるようになりました。Amazonのようなネット通販の始まりです。</p>
 
-<p><a href="wp-content/uploads/2016/01/c0967b409bdfc252ff72a72783c00a9a.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/c0967b409bdfc252ff72a72783c00a9a.png" alt="POSTの仕組み" width="889" height="403" class="alignnone size-full wp-image-1757" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/c0967b409bdfc252ff72a72783c00a9a.png 889w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/c0967b409bdfc252ff72a72783c00a9a-300x136.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/c0967b409bdfc252ff72a72783c00a9a-624x283.png 624w" sizes="(max-width: 889px) 100vw, 889px" /></a></p>
+<p><a href="wp-content/uploads/2016/01/c0967b409bdfc252ff72a72783c00a9a.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/c0967b409bdfc252ff72a72783c00a9a.png" alt="POSTの仕組み" width="889" height="403" class="alignnone size-full wp-image-1757" /></a></p>
 
 <h2>時代の流れとともに、いろんな情報を送りたくなってきた</h2>
 
@@ -611,7 +611,7 @@ Vary:Accept-Encoding
 }
 </code></pre>
 
-<p><a href="wp-content/uploads/2016/01/c365e9a2cdfd5e85b48f85f59a0ddee0.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/c365e9a2cdfd5e85b48f85f59a0ddee0.png" alt="アプリからの利用イメージ" width="626" height="240" class="alignnone size-full wp-image-1758" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/c365e9a2cdfd5e85b48f85f59a0ddee0.png 626w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/c365e9a2cdfd5e85b48f85f59a0ddee0-300x115.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/c365e9a2cdfd5e85b48f85f59a0ddee0-624x239.png 624w" sizes="(max-width: 626px) 100vw, 626px" /></a></p>
+<p><a href="wp-content/uploads/2016/01/c365e9a2cdfd5e85b48f85f59a0ddee0.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/c365e9a2cdfd5e85b48f85f59a0ddee0.png" alt="アプリからの利用イメージ" width="626" height="240" class="alignnone size-full wp-image-1758" /></a></p>
 
 <h2>サーバーはどうなっているの？</h2>
 
@@ -633,7 +633,7 @@ Vary:Accept-Encoding
 
 <p>DBサーバーは非常に便利ですが、遅いという問題があります。そこで、高速化の目的で、別途キャッシュ用のサーバーが用意されていることがあります。Redis、Memcachedなどが有名です。</p>
 
-<p><a href="wp-content/uploads/2016/01/56ad01ec6bb4bcd4f0d8211e8095a971.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/56ad01ec6bb4bcd4f0d8211e8095a971.png" alt="サーバーの構成例" width="930" height="314" class="alignnone size-full wp-image-1759" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/56ad01ec6bb4bcd4f0d8211e8095a971.png 930w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/56ad01ec6bb4bcd4f0d8211e8095a971-300x101.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/56ad01ec6bb4bcd4f0d8211e8095a971-624x211.png 624w" sizes="(max-width: 930px) 100vw, 930px" /></a></p>
+<p><a href="wp-content/uploads/2016/01/56ad01ec6bb4bcd4f0d8211e8095a971.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/56ad01ec6bb4bcd4f0d8211e8095a971.png" alt="サーバーの構成例" width="930" height="314" class="alignnone size-full wp-image-1759" /></a></p>
 
 <h2>まとめ</h2>
 
@@ -695,7 +695,7 @@ Vary:Accept-Encoding
 
 <p>※<code>@Override</code>という記号が初めて登場しました。これはアノテーションと言うもので、プログラムにつける印です。様々な場面で使用しますが、<code>@Override</code>アノテーションは、継承してメソッドを上書きしていることを示すものです。必須ではないため前回は省略しましたが、付けないとコンパイラ警告が出てしまいますので、今回からは付けることとします。</p>
 
-<p><a href="wp-content/uploads/2016/01/aea90ac086e5e9982cc6bcd65768b84e.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/aea90ac086e5e9982cc6bcd65768b84e.png" alt="関数オブジェクト" width="937" height="527" class="alignnone size-full wp-image-1740" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/aea90ac086e5e9982cc6bcd65768b84e.png 937w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/aea90ac086e5e9982cc6bcd65768b84e-300x169.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/aea90ac086e5e9982cc6bcd65768b84e-624x351.png 624w" sizes="(max-width: 937px) 100vw, 937px" /></a></p>
+<p><a href="wp-content/uploads/2016/01/aea90ac086e5e9982cc6bcd65768b84e.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/aea90ac086e5e9982cc6bcd65768b84e.png" alt="関数オブジェクト" width="937" height="527" class="alignnone size-full wp-image-1740" /></a></p>
 
 <h2>その2: Template Method パターン</h2>
 
@@ -713,7 +713,7 @@ s.show();
 
 <p>このような、クラス継承を利用して、一部分のメソッドだけサブクラスに委ねるテクニックを、Template Method パターンと呼びます。</p>
 
-<p><a href="wp-content/uploads/2016/01/435a1daf9aa31294d6804c218671374b.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/435a1daf9aa31294d6804c218671374b.png" alt="テンプレートメソッド" width="604" height="448" class="alignnone size-full wp-image-1741" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/435a1daf9aa31294d6804c218671374b.png 604w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/435a1daf9aa31294d6804c218671374b-300x223.png 300w" sizes="(max-width: 604px) 100vw, 604px" /></a></p>
+<p><a href="wp-content/uploads/2016/01/435a1daf9aa31294d6804c218671374b.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/435a1daf9aa31294d6804c218671374b.png" alt="テンプレートメソッド" width="604" height="448" class="alignnone size-full wp-image-1741" /></a></p>
 
 <h2>その3: ラッパーオブジェクトパターン</h2>
 
@@ -742,7 +742,7 @@ s.show();
 
 <p>このように、ラッパーオブジェクトはプログラムをとても柔軟にするテクニックです。</p>
 
-<p><a href="wp-content/uploads/2016/01/04c78654c9727817da2678516cf984bd.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/04c78654c9727817da2678516cf984bd.png" alt="ラッパーオブジェクト" width="711" height="442" class="alignnone size-full wp-image-1743" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/04c78654c9727817da2678516cf984bd.png 711w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/04c78654c9727817da2678516cf984bd-300x186.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/04c78654c9727817da2678516cf984bd-624x388.png 624w" sizes="(max-width: 711px) 100vw, 711px" /></a></p>
+<p><a href="wp-content/uploads/2016/01/04c78654c9727817da2678516cf984bd.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/04c78654c9727817da2678516cf984bd.png" alt="ラッパーオブジェクト" width="711" height="442" class="alignnone size-full wp-image-1743" /></a></p>
 
 <h2>その4: Factory</h2>
 
@@ -788,7 +788,7 @@ s.makeSounds(); // ワン
 
 <p>getSoundsMakerのプログラムを見なかったとしたら、呼び出し元は何のインスタンスが作られるか分かりません。しかし、そんなことを知らなくても、SoundsMakerインターフェースであることは保証されているので、その範囲でできることは安心して使うことができます。</p>
 
-<p><a href="wp-content/uploads/2016/01/c81b47f255963cad5d8b193f6b47bb82.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/c81b47f255963cad5d8b193f6b47bb82.png" alt="ファクトリー" width="711" height="442" class="alignnone size-full wp-image-1744" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/c81b47f255963cad5d8b193f6b47bb82.png 711w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/c81b47f255963cad5d8b193f6b47bb82-300x186.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/c81b47f255963cad5d8b193f6b47bb82-624x388.png 624w" sizes="(max-width: 711px) 100vw, 711px" /></a></p>
+<p><a href="wp-content/uploads/2016/01/c81b47f255963cad5d8b193f6b47bb82.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/c81b47f255963cad5d8b193f6b47bb82.png" alt="ファクトリー" width="711" height="442" class="alignnone size-full wp-image-1744" /></a></p>
 
 <h2>その5: MVCモデル</h2>
 
@@ -823,7 +823,7 @@ s.makeSounds(); // ワン
 
 <p>ビューは、レイアウトの部分で、同じActivityに異なるレイアウトファイルを与えても動く点でAndroidはビューとコントローラについて抽象化されていると言えます。</p>
 
-<p><a href="wp-content/uploads/2016/01/c39dc0080b2a1aee4c3c11c8919f87ae.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/c39dc0080b2a1aee4c3c11c8919f87ae.png" alt="MVCモデル" width="711" height="442" class="alignnone size-full wp-image-1745" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/c39dc0080b2a1aee4c3c11c8919f87ae.png 711w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/c39dc0080b2a1aee4c3c11c8919f87ae-300x186.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/c39dc0080b2a1aee4c3c11c8919f87ae-624x388.png 624w" sizes="(max-width: 711px) 100vw, 711px" /></a></p>
+<p><a href="wp-content/uploads/2016/01/c39dc0080b2a1aee4c3c11c8919f87ae.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/c39dc0080b2a1aee4c3c11c8919f87ae.png" alt="MVCモデル" width="711" height="442" class="alignnone size-full wp-image-1745" /></a></p>
 
 <h2>その6: モックオブジェクト</h2>
 
@@ -879,7 +879,7 @@ s.makeSounds(); // ワン
 
 <p>本物のオブジェクトとモックの切り替えは、オブジェクトインスタンスをnewで生成するところで行わなければなりません。そのためには「その4」で説明した、「ファクトリー」を使用する検討が必要になってきます。</p>
 
-<p><a href="wp-content/uploads/2016/01/519c3352eb4cceca1630f17942944e15.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/519c3352eb4cceca1630f17942944e15.png" alt="モックオブジェクト" width="711" height="442" class="alignnone size-full wp-image-1746" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/519c3352eb4cceca1630f17942944e15.png 711w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/519c3352eb4cceca1630f17942944e15-300x186.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/519c3352eb4cceca1630f17942944e15-624x388.png 624w" sizes="(max-width: 711px) 100vw, 711px" /></a></p>
+<p><a href="wp-content/uploads/2016/01/519c3352eb4cceca1630f17942944e15.png"><img loading="lazy" decoding="async" src="wp-content/uploads/2016/01/519c3352eb4cceca1630f17942944e15.png" alt="モックオブジェクト" width="711" height="442" class="alignnone size-full wp-image-1746" /></a></p>
 
 <h2>まとめ</h2>
 
