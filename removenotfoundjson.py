@@ -6,7 +6,7 @@ def is_page_not_found_file_item(item):
         try:
             with open(item, "r") as file:
                 data = file.read()
-                if "<TITLE>Page has moved</TITLE>" in data:
+                if '{"code":"oembed_invalid_url","message":"Not Found","data":{"status":404}}' in data:
                     return True
         except UnicodeDecodeError:
             print(f"Error reading {item}")
