@@ -17,7 +17,7 @@
 <title>同時に複数の処理を実行するための最低限の知識 – メイドさんでも分かるプログラミングシリーズ vol.4 | susumuis Info</title>
 <link rel="pingback" href="../../xmlrpc.php" />
 <!--[if lt IE 9]>
-<script src="https://www.susumuis.info/wp-content/themes/susumuis-1/js/html5.js" type="text/javascript"></script>
+<script src="https://susumuishigami.github.io/susumuisinfo/wp-content/themes/susumuis-1/js/html5.js" type="text/javascript"></script>
 <![endif]-->
 <meta name='robots' content='max-image-preview:large' />
 <link rel="alternate" type="application/rss+xml" title="susumuis Info &raquo; フィード" href="../../indexd784.html?feed=rss2" />
@@ -58,7 +58,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 </style>
 <link rel='stylesheet' id='twentytwelve-style-css' href='../../wp-content/themes/susumuis-1/style84fc.css?ver=6.4.3' type='text/css' media='all' />
 <!--[if lt IE 9]>
-<link rel='stylesheet' id='twentytwelve-ie-css' href='https://www.susumuis.info/wp-content/themes/susumuis-1/css/ie.css?ver=20121010' type='text/css' media='all' />
+<link rel='stylesheet' id='twentytwelve-ie-css' href='https://susumuishigami.github.io/susumuisinfo/wp-content/themes/susumuis-1/css/ie.css?ver=20121010' type='text/css' media='all' />
 <![endif]-->
 <link rel="https://api.w.org/" href="../../index52f0.json?rest_route=/" /><link rel="alternate" type="application/json" href="../../index820c.json?rest_route=/wp/v2/posts/1762" /><link rel="canonical" href="multi_thread_maid.html" />
 <link rel='shortlink' href='../../indexd108.html?p=1762' />
@@ -70,7 +70,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <meta property="og:type" content="article" />
 <meta property="og:image:width" content="960" />
 <meta property="og:image:height" content="720" />
-<meta property="og:image" content="https://www.susumuis.info/wp-content/uploads/2016/01/6c7859797c3dff69ee59a49bc61ae567-150x150.png" />
+<meta property="og:image" content="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/6c7859797c3dff69ee59a49bc61ae567-150x150.png" />
 <meta property="og:title" content="同時に複数の処理を実行するための最低限の知識 – メイドさんでも分かるプログラミングシリーズ vol.4" />
 <meta property="og:url" content="https://www.susumuis.info/entry/2016/multi_thread_maid" />
 <meta property="og:description" content="前回に引き続き、メイドさんにプログラミングを教えるためのシリーズです。 前回Webサーバーの仕組みについて、説明しました。早速アプリからWebサーバーに通信するプログラムを作ってみたくなりますが、その前に一つ知っておかな [&hellip;]" />
@@ -129,11 +129,11 @@ Webエンジニア <a href="http://twitter.com/susumuis">susumuis</a> の技術�
 
 <p>ところで、プログラムは通常、上から順に書いたとおりに実行されます。途中で遅い処理があると、その処理が終わるまであとの処理は行われないのが大原則です。</p>
 
-<p><a href="../../wp-content/uploads/2016/01/eef66e5acdf43d3339b97b40706924c5.png"><img fetchpriority="high" decoding="async" src="../../wp-content/uploads/2016/01/eef66e5acdf43d3339b97b40706924c5.png" alt="通信している間待つ" width="960" height="720" class="alignnone size-full wp-image-1768" srcset="https://www.susumuis.info/wp-content/uploads/2016/01/eef66e5acdf43d3339b97b40706924c5.png 960w, https://www.susumuis.info/wp-content/uploads/2016/01/eef66e5acdf43d3339b97b40706924c5-300x225.png 300w, https://www.susumuis.info/wp-content/uploads/2016/01/eef66e5acdf43d3339b97b40706924c5-624x468.png 624w" sizes="(max-width: 960px) 100vw, 960px" /></a></p>
+<p><a href="../../wp-content/uploads/2016/01/eef66e5acdf43d3339b97b40706924c5.png"><img fetchpriority="high" decoding="async" src="../../wp-content/uploads/2016/01/eef66e5acdf43d3339b97b40706924c5.png" alt="通信している間待つ" width="960" height="720" class="alignnone size-full wp-image-1768" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/eef66e5acdf43d3339b97b40706924c5.png 960w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/eef66e5acdf43d3339b97b40706924c5-300x225.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/eef66e5acdf43d3339b97b40706924c5-624x468.png 624w" sizes="(max-width: 960px) 100vw, 960px" /></a></p>
 
 <p>もし、Webサーバーとの通信のような遅い処理を待ってしまったらどうなってしまうでしょうか？ボタンを押してから、サーバーが結果を返すまでの間、固まってしまうことになります。その間は、他のボタンを押すこともできませんし、ホームボタンを押してホーム画面に戻ることも、別のアプリを起動することも、アプリを終了することさえもできなくなってしまいます。</p>
 
-<p><a href="../../wp-content/uploads/2016/01/273d4a327ea8aba12073bc940b107437.png"><img decoding="async" src="../../wp-content/uploads/2016/01/273d4a327ea8aba12073bc940b107437.png" alt="通信中ボタンが押せない！--" width="886" height="621" class="alignnone size-full wp-image-1769" srcset="https://www.susumuis.info/wp-content/uploads/2016/01/273d4a327ea8aba12073bc940b107437.png 886w, https://www.susumuis.info/wp-content/uploads/2016/01/273d4a327ea8aba12073bc940b107437-300x210.png 300w, https://www.susumuis.info/wp-content/uploads/2016/01/273d4a327ea8aba12073bc940b107437-624x437.png 624w" sizes="(max-width: 886px) 100vw, 886px" /></a></p>
+<p><a href="../../wp-content/uploads/2016/01/273d4a327ea8aba12073bc940b107437.png"><img decoding="async" src="../../wp-content/uploads/2016/01/273d4a327ea8aba12073bc940b107437.png" alt="通信中ボタンが押せない！--" width="886" height="621" class="alignnone size-full wp-image-1769" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/273d4a327ea8aba12073bc940b107437.png 886w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/273d4a327ea8aba12073bc940b107437-300x210.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/273d4a327ea8aba12073bc940b107437-624x437.png 624w" sizes="(max-width: 886px) 100vw, 886px" /></a></p>
 
 <p>こんなアプリを作ったらユーザーに怒られてしまいますね。(^^;<br />
 (実際はできないようになっています)</p>
@@ -144,7 +144,7 @@ Webエンジニア <a href="http://twitter.com/susumuis">susumuis</a> の技術�
 
 <p>並列処理をJavaで実現する、最も基本的な仕組みとして、「スレッド」というものがあります。Threadとは糸という意味です。一つの処理の流れを糸に例えて、複数の糸が同時に伸びて絡み合っている様子をイメージしてください。複数のスレッドを使うので、「マルチスレッド」ということもあります。</p>
 
-<p><a href="../../wp-content/uploads/2016/01/7df507a877acd839271582b721ba1872.png"><img decoding="async" src="../../wp-content/uploads/2016/01/7df507a877acd839271582b721ba1872.png" alt="スレッドは糸" width="732" height="715" class="alignnone size-full wp-image-1770" srcset="https://www.susumuis.info/wp-content/uploads/2016/01/7df507a877acd839271582b721ba1872.png 732w, https://www.susumuis.info/wp-content/uploads/2016/01/7df507a877acd839271582b721ba1872-300x293.png 300w, https://www.susumuis.info/wp-content/uploads/2016/01/7df507a877acd839271582b721ba1872-624x610.png 624w" sizes="(max-width: 732px) 100vw, 732px" /></a></p>
+<p><a href="../../wp-content/uploads/2016/01/7df507a877acd839271582b721ba1872.png"><img decoding="async" src="../../wp-content/uploads/2016/01/7df507a877acd839271582b721ba1872.png" alt="スレッドは糸" width="732" height="715" class="alignnone size-full wp-image-1770" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/7df507a877acd839271582b721ba1872.png 732w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/7df507a877acd839271582b721ba1872-300x293.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/7df507a877acd839271582b721ba1872-624x610.png 624w" sizes="(max-width: 732px) 100vw, 732px" /></a></p>
 
 <p>Javaでスレッドを作るためにはズバリ、<code>Thread</code>というクラスを使います。書き方は2通りあります。</p>
 
@@ -196,7 +196,7 @@ t.start();
 <p>このように初めてしまったスレッドtは、もう、run()メソッドが終了するまで外側から止めることはできません。</p>
 
 <p><code>stop()</code>、<code>susupend()</code>というようなメソッドがあるように見えますが、これらは「安全ではない」と非推奨になっています。<br />
-<a href="../../wp-content/uploads/2016/01/26adcde5efb2ea9973e46c5c97ef221e.png"><img loading="lazy" decoding="async" src="../../wp-content/uploads/2016/01/26adcde5efb2ea9973e46c5c97ef221e.png" alt="スレッドは止められない" width="882" height="584" class="alignnone size-full wp-image-1772" srcset="https://www.susumuis.info/wp-content/uploads/2016/01/26adcde5efb2ea9973e46c5c97ef221e.png 882w, https://www.susumuis.info/wp-content/uploads/2016/01/26adcde5efb2ea9973e46c5c97ef221e-300x199.png 300w, https://www.susumuis.info/wp-content/uploads/2016/01/26adcde5efb2ea9973e46c5c97ef221e-624x413.png 624w" sizes="(max-width: 882px) 100vw, 882px" /></a></p>
+<a href="../../wp-content/uploads/2016/01/26adcde5efb2ea9973e46c5c97ef221e.png"><img loading="lazy" decoding="async" src="../../wp-content/uploads/2016/01/26adcde5efb2ea9973e46c5c97ef221e.png" alt="スレッドは止められない" width="882" height="584" class="alignnone size-full wp-image-1772" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/26adcde5efb2ea9973e46c5c97ef221e.png 882w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/26adcde5efb2ea9973e46c5c97ef221e-300x199.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/26adcde5efb2ea9973e46c5c97ef221e-624x413.png 624w" sizes="(max-width: 882px) 100vw, 882px" /></a></p>
 
 <p>もし、プログラミングを失敗して、いつまでも終了しないスレッドがたくさん作られたら大変です！マシンが暴走してしまい、システムはカックカクで最終的に強制終了しなければならないでしょう。</p>
 
@@ -256,7 +256,7 @@ Thread 店員3 = new 店員スレッド();
 <li>コップは既に水で満タンなので、盛大にこぼれます！！</li>
 </ul>
 
-<p><a href="../../wp-content/uploads/2016/01/044cf9d5de75828a8844dd302ff6c3ec.png"><img loading="lazy" decoding="async" src="../../wp-content/uploads/2016/01/044cf9d5de75828a8844dd302ff6c3ec.png" alt="データの破壊" width="914" height="488" class="alignnone size-full wp-image-1773" srcset="https://www.susumuis.info/wp-content/uploads/2016/01/044cf9d5de75828a8844dd302ff6c3ec.png 914w, https://www.susumuis.info/wp-content/uploads/2016/01/044cf9d5de75828a8844dd302ff6c3ec-300x160.png 300w, https://www.susumuis.info/wp-content/uploads/2016/01/044cf9d5de75828a8844dd302ff6c3ec-624x333.png 624w" sizes="(max-width: 914px) 100vw, 914px" /></a></p>
+<p><a href="../../wp-content/uploads/2016/01/044cf9d5de75828a8844dd302ff6c3ec.png"><img loading="lazy" decoding="async" src="../../wp-content/uploads/2016/01/044cf9d5de75828a8844dd302ff6c3ec.png" alt="データの破壊" width="914" height="488" class="alignnone size-full wp-image-1773" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/044cf9d5de75828a8844dd302ff6c3ec.png 914w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/044cf9d5de75828a8844dd302ff6c3ec-300x160.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/044cf9d5de75828a8844dd302ff6c3ec-624x333.png 624w" sizes="(max-width: 914px) 100vw, 914px" /></a></p>
 
 <p>実際の人では、そんなことは起きませんが、複数人の人が無秩序に動いていたら大変な様子が想像できると思います。</p>
 
@@ -297,7 +297,7 @@ Thread 店員3 = new 店員スレッド();
 
 <p>答えは2人の店員さんは見つめ合って固まってしまいます。＼(^o^)／</p>
 
-<p><a href="../../wp-content/uploads/2016/01/6c7859797c3dff69ee59a49bc61ae567.png"><img loading="lazy" decoding="async" src="../../wp-content/uploads/2016/01/6c7859797c3dff69ee59a49bc61ae567.png" alt="デッドロック" width="960" height="720" class="alignnone size-full wp-image-1774" srcset="https://www.susumuis.info/wp-content/uploads/2016/01/6c7859797c3dff69ee59a49bc61ae567.png 960w, https://www.susumuis.info/wp-content/uploads/2016/01/6c7859797c3dff69ee59a49bc61ae567-300x225.png 300w, https://www.susumuis.info/wp-content/uploads/2016/01/6c7859797c3dff69ee59a49bc61ae567-624x468.png 624w" sizes="(max-width: 960px) 100vw, 960px" /></a></p>
+<p><a href="../../wp-content/uploads/2016/01/6c7859797c3dff69ee59a49bc61ae567.png"><img loading="lazy" decoding="async" src="../../wp-content/uploads/2016/01/6c7859797c3dff69ee59a49bc61ae567.png" alt="デッドロック" width="960" height="720" class="alignnone size-full wp-image-1774" srcset="https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/6c7859797c3dff69ee59a49bc61ae567.png 960w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/6c7859797c3dff69ee59a49bc61ae567-300x225.png 300w, https://susumuishigami.github.io/susumuisinfo/wp-content/uploads/2016/01/6c7859797c3dff69ee59a49bc61ae567-624x468.png 624w" sizes="(max-width: 960px) 100vw, 960px" /></a></p>
 
 <p>この現象を「デッドロック」と言います。デッドロックはとても怖い現象です。防ぐことが難しく、発生したらもう救うことができないからです。</p>
 
